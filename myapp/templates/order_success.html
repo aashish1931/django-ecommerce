@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Order Success{% endblock %}
+
+{% block content %}
+<style>
+    .success-container {
+        max-width: 600px;
+        margin: 80px auto;
+        background: #ffffff;
+        padding: 50px 40px;
+        border-radius: 18px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+        text-align: center;
+    }
+
+    .success-icon {
+        font-size: 64px;
+        color: #e50914;
+        margin-bottom: 20px;
+    }
+
+    .success-container h1 {
+        color: #e50914;
+        font-size: 32px;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+    .success-container h6 {
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 30px;
+        font-weight: 400;
+    }
+
+    .success-btn {
+        display: inline-block;
+        background: #e50914;
+        color: #fff;
+        padding: 14px 34px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 600;
+        transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .success-btn:hover {
+        background: #c40811;
+        transform: translateY(-2px);
+    }
+</style>
+
+<div class="success-container">
+    <div class="success-icon">✔</div>
+
+    <h1>Order Placed Successfully</h1>
+
+    <h6>
+        Thank you for your purchase!  
+        Your order will be delivered soon.
+    </h6>
+
+    <a href="{% url 'products' %}" class="success-btn">
+        Continue Shopping
+    </a>
+</div>
+{% endblock %}
