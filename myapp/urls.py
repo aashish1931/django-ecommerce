@@ -1,0 +1,19 @@
+from django.contrib import admin
+from django.urls import path
+from .views import *
+urlpatterns = [
+    path('',register,name='register'),
+    path('login/',login,name='login'),
+    path('home/',home,name='home'),
+    path('products/',products,name='products'),
+    path('add_to_cart/<int:product_id>/',add_to_cart,name='add_to_cart'),
+    path('cart/',cart,name='cart'),
+    path('increase_qty/<int:cart_id>/',increase_qty,name='increase_qty'),
+    path('decrease_qty/<int:cart_id>/',decrease_qty,name='decrease_qty'),
+    path('remove_item/<int:cart_id>/',remove_item,name='remove_item'),
+    path('checkout/',checkout,name='checkout'  ),
+    path('order-success/',order_success,name='order_success'),
+    path('contact/',contact_us,name='contact'),
+    path('logout/',logout,name='logout'  ), 
+    path('about/',about,name='about'  ),
+]

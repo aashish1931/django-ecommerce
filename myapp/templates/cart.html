@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+
+{% block title %}Cart{% endblock %}
+
+{% block content %}
+<style>
+    .cart-container {
+        max-width: 1000px;
+        margin: 40px auto;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .cart-container h1 {
+        text-align: center;
+        color: #e50914;
+        margin-bottom: 25px;
+        font-size: 34px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th {
+        background: #e50914;
+        color: #fff;
+        padding: 12px;
+        font-size: 15px;
+        text-align: center;
+    }
+
+    td {
+        padding: 14px;
+        text-align: center;
+        font-size: 14px;
+        border-bottom: 1px solid #eee;
+    }
+
+    td:first-child {
+        font-weight: 600;
+        color: #333;
+    }
+
+    .qty-btn {
+        padding: 4px 10px;
+        background: #e50914;
+        color: #fff;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        margin: 0 6px;
+        font-size: 14px;
+    }
+
+    .qty-btn:hover {
+        background: #c40811;
+    }
+
+    .remove-btn {
+        background: transparent;
+        border: 1px solid #e50914;
+        color: #e50914;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .remove-btn:hover {
+        background: #e50914;
+        color: #fff;
+    }
+
+    .cart-summary {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 25px;
+        flex-wrap: wrap;
+    }
+
+    .total-amount {
+        font-size: 20px;
+        font-weight: 700;
+        color: #e50914;
+    }
+
+    .checkout-btn {
+        background: #e50914;
+        color: #fff;
+        padding: 12px 28px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 600;
+        transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .checkout-btn:hover {
+        background: #c40811;
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+        table {
+            font-size: 13px;
+        }
+
+        th, td {
+            padding: 10px;
+        }
+
+        .cart-summary {
+            flex-direction: column;
+            gap: 20px;
+            text-align: center;
+        }
+    }
+</style>
+
+<div class="cart-container">
+    <h1>Your Cart</h1>
+
+    <table>
+        <tr>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th>Action</th>
+        </tr>
+
+        {% for item in cart_items %}
+        <tr>
+            <td>{{ item.product.name }}</td>
+
+            <td>
+                <a href="{% url 'decrease_qty' item.id %}" class="qty-btn">−</a>
+                {{ item.quantity }}
+                <a href="{% url 'increase_qty' item.id %}" class="qty-btn">+</a>
+            </td>
+
+            <td>₹ {{ item.product.price }}</td>
+            <td>₹ {{ item.total_price }}</td>
+
+            <td>
+                <a href="{% url 'remove_item' item.id %}">
+                    <button class="remove-btn">Remove</button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div class="cart-summary">
+        <div class="total-amount">
+            TOTAL AMOUNT: ₹ {{ total }}
+        </div>
+
+        <a href="{% url 'checkout' %}" class="checkout-btn">
+            Proceed to Checkout
+        </a>
+    </div>
+</div>
+{% endblock %}

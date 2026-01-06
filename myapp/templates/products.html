@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}Products{% endblock %}
+
+{% block content %}
+<style>
+    .products-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .products-header h1 {
+        font-size: 36px;
+        color: #e50914;
+        font-weight: 700;
+    }
+
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 30px;
+    }
+
+    .product-card {
+        background: #ffffff;
+        border-radius: 14px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        padding: 18px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .product-card img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 12px;
+    }
+
+    .product-card h2 {
+        font-size: 18px;
+        margin-bottom: 8px;
+        color: #222;
+    }
+
+    .product-card p {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 10px;
+        line-height: 1.5;
+    }
+
+    .price {
+        font-size: 18px;
+        font-weight: 700;
+        color: #e50914;
+        margin-bottom: 12px;
+    }
+
+    .add-cart-btn {
+        display: inline-block;
+        background: #e50914;
+        color: #fff;
+        padding: 8px 18px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .add-cart-btn:hover {
+        background: #c40811;
+        transform: translateY(-2px);
+    }
+</style>
+
+<div class="products-header">
+    <h1>All Products</h1>
+</div>
+
+<div class="product-grid">
+    {% for product in products %}
+        <div class="product-card">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+
+            <h2>{{ product.name }}</h2>
+
+            <p>{{ product.description|truncatechars:80 }}</p>
+
+            <div class="price">₹ {{ product.price }}</div>
+
+            <a href="{% url 'add_to_cart' product.id %}" class="add-cart-btn">
+                Add to Cart
+            </a>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

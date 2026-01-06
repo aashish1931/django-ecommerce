@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+<style>
+    .about-container {
+        max-width: 900px;
+        margin: 40px auto;
+        background: #ffffff;
+        padding: 50px 60px;
+        border-radius: 16px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        text-align: center;
+    }
+
+    .about-container h1 {
+        color: #e50914;
+        font-size: 34px;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .about-divider {
+        width: 60px;
+        height: 3px;
+        background: #e50914;
+        margin: 12px auto 30px;
+        border-radius: 2px;
+    }
+
+    .about-container p {
+        font-size: 16px;
+        color: #555;
+        line-height: 1.8;
+        margin-bottom: 18px;
+    }
+
+    .highlight {
+        color: #e50914;
+        font-weight: 600;
+    }
+
+    .feature-list {
+        text-align: left;
+        margin-top: 30px;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .feature-list li {
+        font-size: 15px;
+        color: #444;
+        margin-bottom: 10px;
+        list-style: none;
+        position: relative;
+        padding-left: 24px;
+    }
+
+    .feature-list li::before {
+        content: "✔";
+        position: absolute;
+        left: 0;
+        color: #e50914;
+        font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+        .about-container {
+            padding: 35px 25px;
+        }
+
+        .about-container h1 {
+            font-size: 28px;
+        }
+    }
+</style>
+
+<div class="about-container">
+    <h1>About Our E-Commerce Website</h1>
+    <div class="about-divider"></div>
+
+    <p>
+        Welcome to our modern
+        <span class="highlight">Django-powered E-Commerce platform</span>,
+        designed with performance, security, and user experience in mind.
+    </p>
+
+    <p>
+        This project is developed using the
+        <span class="highlight">Django framework</span>
+        and provides all essential shopping features such as browsing products,
+        adding items to the cart, and placing secure orders.
+    </p>
+
+    <ul class="feature-list">
+        <li>Easy product browsing</li>
+        <li>Add to cart functionality</li>
+        <li>Cash on Delivery & Online Payments</li>
+        <li>Secure order processing</li>
+    </ul>
+</div>
+{% endblock %}
